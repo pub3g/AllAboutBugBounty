@@ -105,3 +105,25 @@ POST /newaccount
   - Find "Connect to facebook/twitter/googleplus" or something like that ![Photo](https://miro.medium.com/max/875/0*LOrCFhQF9-KPALPg.png)]
   - Connect to attacker twitter
   - After logout you can login using the twitter
+
+12. ## Account Takeover Scenario :
+
+## Test Sign-Up Panel
+
+### Try to re- register yourself with same email id as you use before, sometimes unexpected things can happend
+
+1. While doing sign-up with same email id, try to add space after email id e.g. ```victim@gmail.com{space_here}     ``` without angle brackets
+
+2. ```victim@gmail.com%00``` Here i am using Null byte, but i found that many applications accept Null byte in email & they treat it different email form this one ``` victim@gmail.com```, but sometimes they convert it to ```victim@gmail.com```, so trying isn't bad, hope for the best.
+
+3. Carefully see all the reqests in your burp suite history (But Why ),for that, this medium blog is worth to read: 
+
+https://medium.com/@zseano/how-re-signing-up-for-an-account-lead-to-account-takeover-3a63a628fd9f
+
+4. IDN homograph attack: if your registered email id is victim@gmail.com then try to re-register yourself with vicitm@gmail.cÖm, here i replace O with turkish Ö, if a website is vunrable to homograph attack then you can access victim account, you can try same trick for username also ( many website ask for unique username where you can't use any already taken username ),i highly recommended you to read this awesome article  about this kind of vunerabilty :
+
+https://medium.com/bugbountywriteup/how-i-was-able-to-change-victims-password-using-idn-homograph-attack-587111843aff
+
+5. After registering through website try to re-register same email with their android/ios apps, magic can happned anywhere
+
+6. Sometimes target use region based sign-up in region based android/ios apps, register yourself with asia based app after downloading it through app store (android/ios), then by using VPN change the region to US and download their US region based app, again register yourself with same mail id, you will access the same account with your new password.
